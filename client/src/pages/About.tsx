@@ -48,7 +48,7 @@ export default function About() {
                   Our team combines deep technical expertise with strategic business insights to deliver applications that not only function flawlessly but also drive real business results.
                 </p>
                 
-                <motion.div 
+                {/* <motion.div 
                   className="flex flex-wrap gap-4 mt-8"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -81,7 +81,7 @@ export default function About() {
                       <p className="text-sm">{stat.label}</p>
                     </motion.div>
                   ))}
-                </motion.div>
+                </motion.div> */}
               </motion.div>
               
               <motion.div 

@@ -7,12 +7,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactFormEmail, EmailData } from "@/services/emailService";
 
 // Form schema
 const formSchema = z.object({
@@ -46,7 +46,13 @@ export default function Contact() {
   // Contact form submission
   const mutation = useMutation({
     mutationFn: (data: FormValues) => {
-      return apiRequest("POST", "/api/contact", data);
+      const emailData: EmailData = {
+        fullName: data.name,
+        emailAddress: data.email,
+        message: data.message,
+        companyName: data.company
+      };
+      return sendContactFormEmail(emailData);
     },
     onSuccess: () => {
       toast({
@@ -56,7 +62,8 @@ export default function Contact() {
       });
       form.reset();
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('Form submission failed:', error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again later.",
@@ -72,14 +79,9 @@ export default function Contact() {
   // Contact info
   const contactInfo = [
     {
-      icon: <MapPin className="w-5 h-5 text-accent-blue" />,
-      title: "Our Location",
-      content: "123 Tech Avenue, San Francisco, CA 94107, USA",
-    },
-    {
       icon: <Phone className="w-5 h-5 text-accent-blue" />,
       title: "Phone Number",
-      content: "+1 (555) 123-4567",
+      content: "+1 (740) 440-5428",
     },
     {
       icon: <Mail className="w-5 h-5 text-accent-blue" />,
@@ -89,7 +91,7 @@ export default function Contact() {
     {
       icon: <Clock className="w-5 h-5 text-accent-blue" />,
       title: "Business Hours",
-      content: "Monday - Friday: 9AM - 6PM (PST)",
+      content: "Monday - Friday: 9AM - 6PM (EST)",
     },
   ];
 

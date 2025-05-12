@@ -87,7 +87,7 @@ export default function Home() {
           </div>
         </section>
         
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         
         {/* Call to action section */}
         <section className="py-16 bg-primary-light">

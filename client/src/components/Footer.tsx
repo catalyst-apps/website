@@ -13,7 +13,7 @@ export default function Footer() {
     ],
     company: [
       { name: "About Us", href: "/about" },
-      { name: "Careers", href: "#" },
+      { name: "Careers", href: "/contact" },
       { name: "Contact", href: "/contact" }
     ],
     resources: [
@@ -121,18 +121,10 @@ export default function Footer() {
         
         <hr className="border-gray-800 my-8" />
         
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex justify-center items-center">
           <p className="text-sm text-gray-500">
             &copy; {currentYear} Catalyst Apps. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-500 hover:text-accent-blue transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-500 hover:text-accent-blue transition-colors">
-              Terms of Service
-            </a>
-          </div>
         </div>
       </div>
     </footer>

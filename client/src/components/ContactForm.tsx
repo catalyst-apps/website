@@ -10,6 +10,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
+import { sendContactFormEmail } from "@/services/emailService";
+import { EmailData } from "@/services/emailService";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -36,9 +38,19 @@ export default function ContactForm() {
 
   const contactMutation = useMutation({
     mutationFn: (data: FormValues) => {
-      return apiRequest("POST", "/api/contact", data);
+      console.log('Sending request to API with data:', data);
+
+      const emailData: EmailData = {
+        fullName: data.name,
+        emailAddress: data.email,
+        message: data.message,
+        companyName: data.company,
+      }
+      
+      return sendContactFormEmail(emailData);
     },
-    onSuccess: () => {
+    onSuccess: (response) => {
+      console.log('Form submission successful:', response);
       toast({
         title: "Message sent successfully!",
         description: "We'll get back to you as soon as possible.",
@@ -47,6 +59,7 @@ export default function ContactForm() {
       form.reset();
     },
     onError: (error) => {
+      console.error('Form submission failed:', error);
       toast({
         title: "Error sending message",
         description: error.message || "There was a problem sending your message. Please try again.",
@@ -54,11 +67,13 @@ export default function ContactForm() {
       });
     },
     onSettled: () => {
+      console.log('Form submission process completed');
       setIsSubmitting(false);
     },
   });
 
   function onSubmit(data: FormValues) {
+    console.log('Form submitted with data:', data);
     setIsSubmitting(true);
     contactMutation.mutate(data);
   }
