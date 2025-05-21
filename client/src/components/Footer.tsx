@@ -9,7 +9,6 @@ export default function Footer() {
       { name: "Strategy & Planning", href: "/services" },
       { name: "UX/UI Design", href: "/services" },
       { name: "Development", href: "/services" },
-      { name: "QA & Testing", href: "/services" }
     ],
     company: [
       { name: "About Us", href: "/about" },
@@ -29,22 +28,24 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-8 md:mb-0">
-            <div className="flex items-center">
-              <img 
-                src={logoImage} 
-                alt="Catalyst Apps Logo" 
-                className="h-8 w-auto"
-              />
-              <span className="ml-2 text-lg font-bold tracking-tight text-white font-['Orbitron']">
-                CATALYST <span className="text-accent-blue">APPS</span>
-              </span>
-            </div>
+            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <div className="flex items-center cursor-pointer">
+                <img 
+                  src={logoImage} 
+                  alt="Catalyst Apps Logo" 
+                  className="h-8 w-auto"
+                />
+                <span className="ml-2 text-lg font-bold tracking-tight text-white font-['Orbitron']">
+                  CATALYST <span className="text-accent-blue">APPS</span>
+                </span>
+              </div>
+            </Link>
             <p className="mt-2 text-sm text-gray-400 max-w-md">
               Bridging the gap between innovative ideas and technical execution. We transform concepts into market-ready products.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 gap-8">
             <div>
               <h4 className="font-semibold mb-3 text-white">Services</h4>
               <ul className="space-y-2 text-sm">
@@ -93,7 +94,7 @@ export default function Footer() {
               </ul>
             </div>
             
-            <div>
+            {/* <div>
               <h4 className="font-semibold mb-3 text-white">Resources</h4>
               <ul className="space-y-2 text-sm">
                 {footerLinks.resources.map((link, index) => (
@@ -115,7 +116,7 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
         
