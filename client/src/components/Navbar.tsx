@@ -51,7 +51,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <Link href="/">
+            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}>
               <div className="flex items-center cursor-pointer">
                 <img 
                   src={logoImage} 
