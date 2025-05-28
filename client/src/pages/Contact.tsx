@@ -79,11 +79,6 @@ export default function Contact() {
   // Contact info
   const contactInfo = [
     {
-      icon: <Phone className="w-5 h-5 text-accent-blue" />,
-      title: "Phone Number",
-      content: "+1 (740) 440-5428",
-    },
-    {
       icon: <Mail className="w-5 h-5 text-accent-blue" />,
       title: "Email Address",
       content: "hello@catalystapps.com",
